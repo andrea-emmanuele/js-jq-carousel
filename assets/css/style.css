@@ -86,3 +86,7 @@ main {
 .controls > span.circular:last-of-type {
     margin-right:  0;
 }
+
+.controls > span.circular.active {
+    background: #b33888;
+}

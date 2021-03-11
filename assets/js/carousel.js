@@ -2,78 +2,50 @@ main();
 
 function main() {
     let images = $("img").toArray();
-    let i = 1;
 
     createControllers(images);
-    i = moveLeft(i, images);
-    i = moveRight(i, images);
+
+    let firstImg = $("img").first();
+    let lastImg = $("img").last();
+
+    move(firstImg, lastImg);
 }
 
 function createControllers(imgs) {
-    for (let i = 0; i < imgs.length; i++) {
+    $("<span class='circular active'>" ).appendTo(".controls");
+
+    for (let i = 1; i < imgs.length; i++) {
         $("<span class='circular'>" ).appendTo(".controls");
     }
 }
 
-function moveLeft(i, imgs) {
-    let preview = $(".preview");
-    let lastImage = $("img").last();
+function move(firstImg, lastImg) {
+    let prev = $(".preview");
+    let next = $(".next");
 
-    preview.click(function () {
-        if (i < 1) {
-            let actualImage = $(".active");
-            let prevImage = actualImage.prev();
-
-            actualImage.css("left", "-110%");
-            actualImage.css("display", "none");
-            actualImage.removeClass("active");
-            prevImage.css("left", "0");
-            prevImage.css("display", "block");
-            prevImage.addClass("active");
-            i--;
+    prev.click(function () {
+        console.log("preview");
+        if (firstImg.hasClass("active")) {
+            firstImg.removeClass("active");
+            lastImg.addClass("active");
         }
         else {
-            lastImage.addClass("active");
-            i = 4;
-            console.log("prova");
+            let actualImg = $(".active");
+            actualImg.removeClass("active");
+            actualImg.prev().addClass("active");
         }
-        console.log(i);
     });
-
-    return i;
-}
-
-function moveRight(i, imgs) {
-    let next = $(".next");
-    let lastImage = $("img").last();
-    let actualImage;
-    let nextImage;
 
     next.click(function () {
-        if (i < imgs.length) {
-            actualImage = $(".active");
-            nextImage = actualImage.next();
-
-            actualImage.css("left", "-110%");
-            actualImage.css("display", "none");
-            actualImage.removeClass("active");
-            nextImage.css("left", "0");
-            nextImage.css("display", "block");
-            nextImage.addClass("active");
-            i++;
+        console.log("next");
+        if (lastImg.hasClass("active")) {
+            lastImg.removeClass("active");
+            firstImg.addClass("active");
         }
         else {
-            lastImage.removeClass("active");
-            lastImage.css("display", "none");
-            lastImage.css("left", "-110%");
-            actualImage = $("img").first();
-            actualImage.css("left", "0");
-            actualImage.css("display", "block");
-            actualImage.addClass("active");
-            i = 1;
+            let actualImg = $(".active");
+            actualImg.removeClass("active");
+            actualImg.next().addClass("active");
         }
-        console.log(i);
     });
-
-    return i;
 }
