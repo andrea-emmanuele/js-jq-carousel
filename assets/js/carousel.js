@@ -11,7 +11,7 @@ function main() {
     let lastImg = $("img").last();
 
     move(firstPoint, lastPoint, firstImg, lastImg);
-    moveFrom();
+    moveAt();
 }
 
 function createControllers(imgs) {
@@ -56,7 +56,7 @@ function move(firstPoint, lastPoint, firstImg, lastImg) {
     });
 }
 
-function moveFrom() {
+function moveAt() {
     let point = $("span");
     let selected;
     let actual;
