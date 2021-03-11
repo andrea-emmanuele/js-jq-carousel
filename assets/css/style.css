@@ -1,0 +1,88 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #b2f7ef;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #7bdff2;
+}
+
+.carousel {
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.carousel > .preview:before, .carousel > .next:before {
+    font-family: "Font Awesome 5 Free";
+    font-size: 3rem;
+    font-weight: 900;
+    color: #f2b5d4;
+    flex: 1 0 100px;
+    cursor: pointer;
+}
+
+.carousel > .preview:before {
+    content: "\f359";
+}
+
+.carousel > .next:before {
+    content: "\f35a";
+}
+
+.carousel > .inner-carousel {
+    flex: 2 0 600px;
+    padding: 0 30px;
+    overflow: hidden;
+}
+
+.carousel .inner-carousel > img {
+    width: 100%;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: none;
+}
+
+.carousel .inner-carousel > img.active {
+    display: block;
+    position: relative;
+    left: 0;
+}
+
+.carousel > .controls {
+    flex: 1 0 100%;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.controls > span.circular {
+    width: 16px;
+    height: 16px;
+    background: #f2b5d4;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: block;
+    cursor: pointer;
+}
+
+.controls > span.circular:last-of-type {
+    margin-right:  0;
+}
