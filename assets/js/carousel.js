@@ -5,10 +5,13 @@ function main() {
 
     createControllers(images);
 
+    let firstPoint = $("span").first();
+    let lastPoint = $("span").last();
     let firstImg = $("img").first();
     let lastImg = $("img").last();
 
-    move(firstImg, lastImg);
+    move(firstPoint, lastPoint, firstImg, lastImg);
+    moveFrom();
 }
 
 function createControllers(imgs) {
@@ -19,33 +22,50 @@ function createControllers(imgs) {
     }
 }
 
-function move(firstImg, lastImg) {
+function move(firstPoint, lastPoint, firstImg, lastImg) {
     let prev = $(".preview");
     let next = $(".next");
+    let actualImg;
 
     prev.click(function () {
-        console.log("preview");
         if (firstImg.hasClass("active")) {
             firstImg.removeClass("active");
             lastImg.addClass("active");
+            firstPoint.removeClass("active");
+            lastPoint.addClass("active");
         }
         else {
-            let actualImg = $(".active");
+            actualImg = $(".active");
             actualImg.removeClass("active");
             actualImg.prev().addClass("active");
         }
     });
 
     next.click(function () {
-        console.log("next");
         if (lastImg.hasClass("active")) {
             lastImg.removeClass("active");
             firstImg.addClass("active");
+            lastPoint.removeClass("active");
+            firstPoint.addClass("active");
         }
         else {
-            let actualImg = $(".active");
+            actualImg = $(".active");
             actualImg.removeClass("active");
             actualImg.next().addClass("active");
         }
+    });
+}
+
+function moveFrom() {
+    let point = $("span");
+    let selected;
+    let actual;
+
+    point.click(function () {
+        actual = $(".active");
+        selected = point.index(this); // getting index of clicked span
+        actual.removeClass("active");
+        $("img").eq(selected).addClass("active");
+        $(".circular").eq(selected).addClass("active");
     });
 }
