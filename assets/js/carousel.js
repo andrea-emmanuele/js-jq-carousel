@@ -1,4 +1,10 @@
-main();
+$("main").hide();
+
+$(function () { // short for document.ready
+    $(".loading").remove();
+    $("main").show();
+    main();
+});
 
 function main() {
     let images = $("img").toArray();
